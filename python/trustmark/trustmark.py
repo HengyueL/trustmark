@@ -99,7 +99,7 @@ class TrustMark():
         
         self.decoder = self.load_model(locations['config'], locations['decoder'], self.device, secret_len, part='decoder')
         self.encoder = self.load_model(locations['config'], locations['encoder'], self.device, secret_len, part='encoder')
-        self.removal = self.load_model(locations['config-rm'], locations['remover'], self.device, secret_len, part='remover')
+        # self.removal = self.load_model(locations['config-rm'], locations['remover'], self.device, secret_len, part='remover')
 
 
     def schemaCapacity(self):
@@ -192,6 +192,8 @@ class TrustMark():
             else:
                 return secret_pred, detected, version
         else:
+            # Added
+            secret_pred = secret_binaryarray
             assert len(secret_pred.shape)==2
             secret_pred = ''.join(str(int(x)) for x in secret_pred[0])
             return secret_pred, True, -1

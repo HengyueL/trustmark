@@ -20,7 +20,7 @@ from PIL import Image
 import torch
 from trustmark import TrustMark
 # =====
-from general import watermark_str_to_numpy, watermark_np_to_str, uint8_to_float, compute_ssim
+from python.general import watermark_str_to_numpy, watermark_np_to_str, uint8_to_float, compute_ssim
 
 
 def calc_mse(img_1_bgr_uint8, img_2_bgr_uint8):
@@ -122,7 +122,7 @@ def main(args):
 
                 # Step 1: Decode the interm. result
                 wm_secret, wm_present, wm_schema = tm.decode(img_input, MODE='binary')
-                watermark_decoded_str = watermark_np_to_str(wm_secret)
+                watermark_decoded_str = wm_secret
 
                 # Step 2: log the result
                 watermark_decoded_log.append(watermark_decoded_str)
